@@ -1,0 +1,65 @@
+// =============================================================================
+// FILE STORAGE REGISTRY - PRISMA SCHEMA ADDITIONS
+// =============================================================================
+//
+// Add the following models to your existing schema.prisma file.
+// DO NOT replace your entire schema - just add these models.
+//
+// If you don't have a prisma setup yet, follow the Prisma 7 guide:
+// https://www.prisma.io/docs/guides/nextjs
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// REQUIRED: Add the File model to track uploaded files
+// -----------------------------------------------------------------------------
+model File {
+  id        String          @id @default(cuid())
+  name      String
+  size      Int
+  publicUrl String
+  type      String
+  key       String          @unique
+  provider  StorageProvider @default(cloudflare)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+enum StorageProvider {
+  aws
+  cloudflare
+}
+
+// -----------------------------------------------------------------------------
+// OPTIONAL: Example Category model with file upload support
+// You can adapt this pattern for any model that needs image/file uploads
+// -----------------------------------------------------------------------------
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  image       String   // Stores the file URL with metadata query params
+  description String?
+  isFeatured  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// =============================================================================
+// INTEGRATION NOTES:
+// =============================================================================
+//
+// 1. The `image` field in Category stores the public URL with metadata:
+//    Example: https://bucket.r2.dev/uuid-filename.jpg?size=12345&key=uuid-filename.jpg&p=cloudflare&name=original.jpg&type=image/jpeg
+//
+// 2. When a category is deleted, the API automatically:
+//    - Extracts the file key from the image URL
+//    - Deletes the file from S3/R2
+//    - Deletes the File record from the database
+//
+// 3. You can use the same pattern for any model:
+//    - Add an `image` or `file` field (String type)
+//    - Use the Dropzone component to upload
+//    - Store the URL with metadata in the field
+//
+// =============================================================================

@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  image       String
+  description String?
+  isFeatured  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model File {
+  id        String          @id @default(cuid())
+  name      String
+  size      Int
+  publicUrl String
+  type      String
+  key       String          @unique
+  provider  StorageProvider @default(cloudflare)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+enum StorageProvider {
+  aws
+  cloudflare
+}

@@ -1,0 +1,195 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "file-storage",
+  "homepage": "https://github.com/yourusername/file-storage",
+  "items": [
+    {
+      "name": "file-storage",
+      "type": "registry:block",
+      "title": "File Storage System",
+      "description": "A complete file storage system with AWS S3 and Cloudflare R2 support. Includes dropzone component, file tracking, categories example, and all necessary API routes. NOTE: This component includes a prisma schema EXAMPLE file (schema.prisma.example) - you need to manually add the models to your existing schema.prisma file.",
+      "dependencies": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/s3-request-presigner",
+        "@tanstack/react-query",
+        "react-dropzone",
+        "uuid",
+        "zod",
+        "sonner",
+        "react-hook-form",
+        "server-only",
+        "@prisma/client",
+        "@prisma/adapter-pg",
+        "dotenv",
+        "pg"
+      ],
+      "devDependencies": [
+        "@types/uuid",
+        "@types/pg",
+        "prisma",
+        "tsx"
+      ],
+      "registryDependencies": [
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "textarea",
+        "label",
+        "switch",
+        "form",
+        "scroll-area",
+        "alert"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/file-storage/components/ui/dropzone.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dropzone.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/ui/error-display.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/error-display.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/file-storage/categories/Categories.tsx",
+          "type": "registry:component",
+          "target": "components/file-storage/categories/Categories.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/file-storage/categories/CategoryForm.tsx",
+          "type": "registry:component",
+          "target": "components/file-storage/categories/CategoryForm.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/file-storage/categories/DeleteCategoryButton.tsx",
+          "type": "registry:component",
+          "target": "components/file-storage/categories/DeleteCategoryButton.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/file-storage/files/Files.tsx",
+          "type": "registry:component",
+          "target": "components/file-storage/files/Files.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/components/file-storage/files/DeleteFileButton.tsx",
+          "type": "registry:component",
+          "target": "components/file-storage/files/DeleteFileButton.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/s3Client.ts",
+          "type": "registry:lib",
+          "target": "lib/s3Client.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/r2Client.ts",
+          "type": "registry:lib",
+          "target": "lib/r2Client.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/prisma.ts",
+          "type": "registry:lib",
+          "target": "lib/prisma.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/fileDataExtractor.ts",
+          "type": "registry:lib",
+          "target": "lib/fileDataExtractor.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/getNormalDate.ts",
+          "type": "registry:lib",
+          "target": "lib/getNormalDate.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/api/categories/index.ts",
+          "type": "registry:lib",
+          "target": "lib/api/categories/index.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/api/categories/schema.ts",
+          "type": "registry:lib",
+          "target": "lib/api/categories/schema.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/lib/api/files/index.ts",
+          "type": "registry:lib",
+          "target": "lib/api/files/index.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/s3/upload/route.ts",
+          "type": "registry:file",
+          "target": "app/api/s3/upload/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/s3/delete/route.ts",
+          "type": "registry:file",
+          "target": "app/api/s3/delete/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/r2/upload/route.ts",
+          "type": "registry:file",
+          "target": "app/api/r2/upload/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/r2/delete/route.ts",
+          "type": "registry:file",
+          "target": "app/api/r2/delete/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/v1/categories/route.ts",
+          "type": "registry:file",
+          "target": "app/api/v1/categories/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/v1/categories/[id]/route.ts",
+          "type": "registry:file",
+          "target": "app/api/v1/categories/[id]/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/v1/files/route.ts",
+          "type": "registry:file",
+          "target": "app/api/v1/files/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/api/v1/files/stats/route.ts",
+          "type": "registry:file",
+          "target": "app/api/v1/files/stats/route.ts"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/(example)/categories/page.tsx",
+          "type": "registry:page",
+          "target": "app/(example)/categories/page.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/(example)/file-storage/page.tsx",
+          "type": "registry:page",
+          "target": "app/(example)/file-storage/page.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/app/(example)/layout.tsx",
+          "type": "registry:file",
+          "target": "app/(example)/layout.tsx"
+        },
+        {
+          "path": "registry/new-york/file-storage/prisma/schema.prisma.example",
+          "type": "registry:file",
+          "target": "prisma/schema.prisma.example"
+        }
+      ],
+      "envVars": {
+        "DATABASE_URL": "postgresql://user:password@localhost:5432/dbname",
+        "AWS_S3_REGION": "us-east-1",
+        "AWS_S3_BUCKET_NAME": "your-bucket-name",
+        "AWS_S3_ACCESS_KEY_ID": "",
+        "AWS_S3_SECRET_ACCESS_KEY": "",
+        "CLOUDFLARE_R2_ACCESS_KEY_ID": "",
+        "CLOUDFLARE_R2_SECRET_ACCESS_KEY": "",
+        "CLOUDFLARE_R2_ENDPOINT": "https://your-account-id.r2.cloudflarestorage.com",
+        "CLOUDFLARE_R2_BUCKET_NAME": "your-bucket-name",
+        "CLOUDFLARE_R2_PUBLIC_DEV_URL": "https://pub-xxx.r2.dev"
+      }
+    }
+  ]
+}
