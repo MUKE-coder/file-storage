@@ -9,18 +9,11 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
-      include: {
-        _count: {
-          select: {
-            products: true,
-          },
-        },
-      },
     });
     const result = categories.map((c) => {
       return {
         ...c,
-        productsCount: c._count.products,
+        productsCount: 0,
       };
     });
     return NextResponse.json(result, {
