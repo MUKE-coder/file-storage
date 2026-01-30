@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const allowedOrigins = ["https://localhost:1408", "https://my-app.org"];
+const allowedOrigins = [
+  "https://localhost:1408",
+  "https://file-storage.desishub.com",
+];
 
 const corsOptions = {
   "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",

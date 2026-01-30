@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "file-storage",
-  "homepage": "https://github.com/yourusername/file-storage",
+  "homepage": "https://file-storage.desishub.com",
   "items": [
     {
       "name": "file-storage",
@@ -23,12 +23,7 @@
         "dotenv",
         "pg"
       ],
-      "devDependencies": [
-        "@types/uuid",
-        "@types/pg",
-        "prisma",
-        "tsx"
-      ],
+      "devDependencies": ["@types/uuid", "@types/pg", "prisma", "tsx"],
       "registryDependencies": [
         "button",
         "card",

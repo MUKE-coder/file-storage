@@ -104,7 +104,8 @@ export default function DocsPage() {
         </h1>
         <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-8">
           A complete file storage solution with AWS S3 and Cloudflare R2
-          support. Includes dropzone component, file tracking, and example pages.
+          support. Includes dropzone component, file tracking, and example
+          pages.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl">
@@ -134,11 +135,11 @@ export default function DocsPage() {
             Install the file-storage component using the shadcn CLI:
           </p>
           <CodeBlock
-            code={`pnpm dlx shadcn@latest add https://your-domain.com/r/file-storage.json`}
+            code={`pnpm dlx shadcn@latest add https://file-storage.desishub.com/r/file-storage.json`}
           />
-          <p className="text-indigo-200 text-sm mt-4">
+          {/* <p className="text-indigo-200 text-sm mt-4">
             Replace <code className="bg-indigo-500/50 px-2 py-0.5 rounded">your-domain.com</code> with the URL where this registry is hosted.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -198,9 +199,11 @@ export default function DocsPage() {
         </h2>
         <div className="space-y-6">
           <StepCard step={1} title="Install the Component">
-            <p>Run the following command to install the file-storage component:</p>
+            <p>
+              Run the following command to install the file-storage component:
+            </p>
             <CodeBlock
-              code={`pnpm dlx shadcn@latest add https://your-domain.com/r/file-storage.json`}
+              code={`pnpm dlx shadcn@latest add https://file-storage.desishub.com/r/file-storage.json`}
             />
             <p className="text-sm text-slate-500">
               This will install all required files and dependencies.
@@ -209,7 +212,8 @@ export default function DocsPage() {
 
           <StepCard step={2} title="Set Up Prisma (if not already configured)">
             <p>
-              If you don&apos;t have Prisma set up yet, install the required packages:
+              If you don&apos;t have Prisma set up yet, install the required
+              packages:
             </p>
             <CodeBlock
               code={`pnpm add @prisma/client @prisma/adapter-pg dotenv pg
@@ -218,7 +222,11 @@ pnpm add -D prisma tsx @types/pg`}
             <p>Initialize Prisma:</p>
             <CodeBlock code={`pnpm dlx prisma init`} />
             <p>
-              Create a <code className="bg-slate-100 px-2 py-0.5 rounded">prisma.config.ts</code> file:
+              Create a{" "}
+              <code className="bg-slate-100 px-2 py-0.5 rounded">
+                prisma.config.ts
+              </code>{" "}
+              file:
             </p>
             <CodeBlock
               language="typescript"
@@ -235,7 +243,10 @@ export default defineConfig({
           <StepCard step={3} title="Add Prisma Models">
             <p>
               Add the following models to your existing{" "}
-              <code className="bg-slate-100 px-2 py-0.5 rounded">prisma/schema.prisma</code> file:
+              <code className="bg-slate-100 px-2 py-0.5 rounded">
+                prisma/schema.prisma
+              </code>{" "}
+              file:
             </p>
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
               <p className="text-amber-800 font-semibold">
@@ -283,7 +294,8 @@ model Category {
           <StepCard step={4} title="Configure Environment Variables">
             <p>
               Add these environment variables to your{" "}
-              <code className="bg-slate-100 px-2 py-0.5 rounded">.env</code> file:
+              <code className="bg-slate-100 px-2 py-0.5 rounded">.env</code>{" "}
+              file:
             </p>
             <CodeBlock
               code={`# Database
@@ -305,7 +317,9 @@ CLOUDFLARE_R2_PUBLIC_DEV_URL="https://pub-xxx.r2.dev"`}
           </StepCard>
 
           <StepCard step={5} title="Generate Prisma Client & Push Schema">
-            <p>Generate the Prisma client and push your schema to the database:</p>
+            <p>
+              Generate the Prisma client and push your schema to the database:
+            </p>
             <CodeBlock
               code={`pnpm dlx prisma generate
 pnpm dlx prisma db push`}
@@ -315,7 +329,10 @@ pnpm dlx prisma db push`}
           <StepCard step={6} title="Add Postinstall Script (for deployment)">
             <p>
               Add this to your{" "}
-              <code className="bg-slate-100 px-2 py-0.5 rounded">package.json</code> for Vercel/production deployments:
+              <code className="bg-slate-100 px-2 py-0.5 rounded">
+                package.json
+              </code>{" "}
+              for Vercel/production deployments:
             </p>
             <CodeBlock
               language="json"
@@ -367,16 +384,18 @@ export function MyComponent() {
               Dropzone Variants
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {["default", "compact", "minimal", "avatar", "inline"].map((variant) => (
-                <div
-                  key={variant}
-                  className="text-center p-3 bg-slate-50 rounded-xl"
-                >
-                  <code className="text-sm text-indigo-600 font-mono">
-                    {variant}
-                  </code>
-                </div>
-              ))}
+              {["default", "compact", "minimal", "avatar", "inline"].map(
+                (variant) => (
+                  <div
+                    key={variant}
+                    className="text-center p-3 bg-slate-50 rounded-xl"
+                  >
+                    <code className="text-sm text-indigo-600 font-mono">
+                      {variant}
+                    </code>
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>

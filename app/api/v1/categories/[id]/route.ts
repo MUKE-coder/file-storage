@@ -49,7 +49,7 @@ export async function DELETE(
       const endpoint = provider === "aws" ? "/api/s3/delete" : "/api/r2/delete";
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || "https://localhost:1408"}${endpoint}`,
+          `${process.env.NEXT_PUBLIC_API_URL || "https://file-storage.desishub.com"}${endpoint}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
