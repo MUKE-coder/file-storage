@@ -1,6 +1,4 @@
-// import Categories from "@/components/file-storage/categories/Categories";
-
-import Categories from "@/components/dashboard/categories/Categories";
+import Categories from "@/components/file-storage/categories/Categories";
 
 export default function CategoriesPage() {
   return (

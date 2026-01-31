@@ -11,6 +11,9 @@ import {
   Rocket,
   ExternalLink,
   ChevronRight,
+  Youtube,
+  Linkedin,
+  Globe,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -84,12 +87,43 @@ export default function DocsPage() {
               File Storage
             </span>
           </div>
-          <Link
-            href="/dashboard/categories"
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
-          >
-            View Demo <ChevronRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-3">
+              <a
+                href="https://www.youtube.com/@JBWEBDEVELOPER"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-500 hover:text-red-600 transition-colors"
+                title="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muke-johnbaptist-95bb82198/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-500 hover:text-blue-600 transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://jb.desishub.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-500 hover:text-indigo-600 transition-colors"
+                title="Website"
+              >
+                <Globe className="w-5 h-5" />
+              </a>
+            </div>
+            <Link
+              href="/categories"
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
+            >
+              View Demo <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -182,11 +216,12 @@ export default function DocsPage() {
           <div className="border border-slate-200 rounded-2xl p-6 bg-white">
             <Database className="w-10 h-10 text-indigo-600 mb-4" />
             <h3 className="text-lg font-bold text-slate-900 mb-2">
-              Example Pages
+              2 Example Pages
             </h3>
             <p className="text-slate-600">
-              Categories management and file storage dashboard pages to help you
-              get started quickly.
+              <strong>/categories</strong> - List categories with image uploads.{" "}
+              <strong>/file-storage</strong> - Track files, storage space &
+              provider.
             </p>
           </div>
         </div>
@@ -408,9 +443,25 @@ export function MyComponent() {
         </h2>
         <div className="bg-slate-900 text-slate-100 p-6 rounded-2xl font-mono text-sm overflow-x-auto">
           <pre>{`your-project/
+├── app/
+│   ├── (example)/
+│   │   ├── categories/           # /categories - List categories with image upload
+│   │   │   └── page.tsx
+│   │   └── file-storage/         # /file-storage - Track files & storage stats
+│   │       └── page.tsx
+│   └── api/
+│       ├── s3/
+│       │   ├── upload/route.ts   # S3 presigned URL generation
+│       │   └── delete/route.ts   # S3 file deletion
+│       ├── r2/
+│       │   ├── upload/route.ts   # R2 presigned URL generation
+│       │   └── delete/route.ts   # R2 file deletion
+│       └── v1/
+│           ├── categories/       # Category CRUD endpoints
+│           └── files/            # File listing & stats endpoints
 ├── components/
 │   ├── ui/
-│   │   ├── dropzone.tsx          # Main dropzone component
+│   │   ├── dropzone.tsx          # Main dropzone component (5 variants)
 │   │   └── error-display.tsx     # Error display component
 │   └── file-storage/
 │       ├── categories/           # Category management components
@@ -424,17 +475,62 @@ export function MyComponent() {
 │   └── api/
 │       ├── categories/           # Category API helpers
 │       └── files/                # File API helpers
-└── app/
-    └── api/
-        ├── s3/
-        │   ├── upload/route.ts   # S3 presigned URL generation
-        │   └── delete/route.ts   # S3 file deletion
-        ├── r2/
-        │   ├── upload/route.ts   # R2 presigned URL generation
-        │   └── delete/route.ts   # R2 file deletion
-        └── v1/
-            ├── categories/       # Category CRUD endpoints
-            └── files/            # File listing endpoints`}</pre>
+└── prisma/
+    └── schema.prisma.example     # Prisma models to add`}</pre>
+        </div>
+      </section>
+
+      {/* Example Pages Section */}
+      <section className="max-w-5xl mx-auto px-6 pb-16">
+        <h2 className="text-3xl font-black text-slate-900 mb-8">
+          Example Pages Included
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <Link
+            href="/categories"
+            className="group border border-slate-200 rounded-2xl p-6 bg-white hover:border-indigo-300 hover:shadow-lg transition-all"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-indigo-100 p-3 rounded-xl group-hover:bg-indigo-200 transition-colors">
+                <Layers className="w-6 h-6 text-indigo-600" />
+              </div>
+              <code className="text-lg font-bold text-indigo-600">
+                /categories
+              </code>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">
+              Categories Page
+            </h3>
+            <ul className="text-slate-600 space-y-1 text-sm">
+              <li>• List all categories with images</li>
+              <li>• Create new categories with image upload</li>
+              <li>• Edit and delete categories</li>
+              <li>• Pagination support</li>
+            </ul>
+          </Link>
+
+          <Link
+            href="/file-storage"
+            className="group border border-slate-200 rounded-2xl p-6 bg-white hover:border-indigo-300 hover:shadow-lg transition-all"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-indigo-100 p-3 rounded-xl group-hover:bg-indigo-200 transition-colors">
+                <Cloud className="w-6 h-6 text-indigo-600" />
+              </div>
+              <code className="text-lg font-bold text-indigo-600">
+                /file-storage
+              </code>
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2">
+              File Storage Page
+            </h3>
+            <ul className="text-slate-600 space-y-1 text-sm">
+              <li>• Track all uploaded files</li>
+              <li>• View total storage space used</li>
+              <li>• See provider breakdown (S3 vs R2)</li>
+              <li>• Delete files with confirmation</li>
+            </ul>
+          </Link>
         </div>
       </section>
 
@@ -445,22 +541,22 @@ export function MyComponent() {
             See it in Action
           </h2>
           <p className="text-slate-300 mb-6">
-            Check out the demo pages to see the components working together.
+            Check out the example pages to see the components working together.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/dashboard/categories"
+              href="/categories"
               className="flex items-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-xl font-semibold hover:bg-slate-100 transition-colors"
             >
               <Layers className="w-5 h-5" />
-              Categories Demo
+              /categories
             </Link>
             <Link
-              href="/dashboard/file-storage"
+              href="/file-storage"
               className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-colors"
             >
               <Cloud className="w-5 h-5" />
-              File Storage Demo
+              /file-storage
             </Link>
           </div>
         </div>
@@ -468,29 +564,75 @@ export function MyComponent() {
 
       {/* Footer */}
       <footer className="border-t border-slate-200 py-8">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">
-            File Storage Registry Component
-          </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://ui.shadcn.com/docs/registry"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-slate-600 hover:text-indigo-600 transition-colors"
-            >
-              shadcn Registry Docs
-              <ExternalLink className="w-3 h-3" />
-            </a>
-            <a
-              href="https://www.prisma.io/docs/guides/nextjs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-slate-600 hover:text-indigo-600 transition-colors"
-            >
-              Prisma 7 Guide
-              <ExternalLink className="w-3 h-3" />
-            </a>
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p className="text-slate-500 text-sm">
+                File Storage Registry Component
+              </p>
+              <p className="text-slate-400 text-xs">
+                Built by{" "}
+                <a
+                  href="https://jb.desishub.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-600 hover:underline"
+                >
+                  JB Web Developer
+                </a>
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href="https://www.youtube.com/@JBWEBDEVELOPER"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-400 hover:text-red-600 transition-colors"
+                title="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/muke-johnbaptist-95bb82198/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-400 hover:text-blue-600 transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://jb.desishub.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 text-slate-400 hover:text-indigo-600 transition-colors"
+                title="Website"
+              >
+                <Globe className="w-5 h-5" />
+              </a>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href="https://ui.shadcn.com/docs/registry"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-sm text-slate-600 hover:text-indigo-600 transition-colors"
+              >
+                shadcn Registry Docs
+                <ExternalLink className="w-3 h-3" />
+              </a>
+              <a
+                href="https://www.prisma.io/docs/guides/nextjs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-sm text-slate-600 hover:text-indigo-600 transition-colors"
+              >
+                Prisma 7 Guide
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
           </div>
         </div>
       </footer>

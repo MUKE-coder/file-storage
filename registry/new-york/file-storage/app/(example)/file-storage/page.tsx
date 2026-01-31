@@ -1,6 +1,4 @@
-// import Files from "@/components/file-storage/files/Files";
-
-import Files from "@/components/dashboard/files/Files";
+import Files from "@/components/file-storage/files/Files";
 
 export default function FileStoragePage() {
   return (

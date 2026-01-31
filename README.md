@@ -22,39 +22,45 @@ pnpm dlx shadcn@latest add https://file-storage-registry.vercel.app/r/file-stora
 
 ```
 your-project/
+├── app/
+│   ├── (example)/
+│   │   ├── categories/             # /categories - List categories with image upload
+│   │   │   └── page.tsx
+│   │   └── file-storage/           # /file-storage - Track files & storage stats
+│   │       └── page.tsx
+│   └── api/
+│       ├── s3/
+│       │   ├── upload/route.ts     # S3 presigned URL generation
+│       │   └── delete/route.ts     # S3 file deletion
+│       ├── r2/
+│       │   ├── upload/route.ts     # R2 presigned URL generation
+│       │   └── delete/route.ts     # R2 file deletion
+│       └── v1/
+│           ├── categories/         # Category CRUD endpoints
+│           └── files/              # File listing & stats endpoints
 ├── components/
 │   ├── ui/
-│   │   ├── dropzone.tsx          # Main dropzone component (5 variants)
-│   │   └── error-display.tsx     # Error display component
+│   │   ├── dropzone.tsx            # Main dropzone component (5 variants)
+│   │   └── error-display.tsx       # Error display component
 │   └── file-storage/
-│       ├── categories/           # Category management components
+│       ├── categories/             # Category management components
 │       │   ├── Categories.tsx
 │       │   ├── CategoryForm.tsx
 │       │   └── DeleteCategoryButton.tsx
-│       └── files/                # File management components
+│       └── files/                  # File management components
 │           ├── Files.tsx
 │           └── DeleteFileButton.tsx
 ├── lib/
-│   ├── s3Client.ts               # AWS S3 client configuration
-│   ├── r2Client.ts               # Cloudflare R2 client configuration
-│   ├── prisma.ts                 # Prisma client singleton
-│   ├── fileDataExtractor.ts      # URL metadata extraction
-│   ├── getNormalDate.ts          # Date formatting utility
+│   ├── s3Client.ts                 # AWS S3 client configuration
+│   ├── r2Client.ts                 # Cloudflare R2 client configuration
+│   ├── prisma.ts                   # Prisma client singleton
+│   ├── fileDataExtractor.ts        # URL metadata extraction
+│   ├── getNormalDate.ts            # Date formatting utility
 │   └── api/
-│       ├── categories/           # Category API functions
-│       └── files/                # File API functions
-├── app/api/
-│   ├── s3/
-│   │   ├── upload/route.ts       # S3 presigned URL generation
-│   │   └── delete/route.ts       # S3 file deletion
-│   ├── r2/
-│   │   ├── upload/route.ts       # R2 presigned URL generation
-│   │   └── delete/route.ts       # R2 file deletion
-│   └── v1/
-│       ├── categories/           # Category CRUD endpoints
-│       └── files/                # File listing & stats endpoints
+│       ├── categories/             # Category API functions
+│       └── files/                  # File API functions
 └── prisma/
-    └── schema.prisma.example     # Prisma models to add
+    └── schema.prisma.example       # Prisma models to add
 ```
 
 ## Installation Guide
@@ -165,9 +171,9 @@ export default function MyComponent() {
 
   return (
     <Dropzone
-      provider="r2"  // or "s3"
+      provider="r2" // or "s3"
       onUploadComplete={handleUploadComplete}
-      maxSize={5 * 1024 * 1024}  // 5MB
+      maxSize={5 * 1024 * 1024} // 5MB
       accept={{
         "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp"],
       }}
@@ -257,6 +263,7 @@ export default function ProductForm() {
 **R2**: `POST /api/r2/upload`
 
 Request:
+
 ```json
 {
   "filename": "image.png",
@@ -265,6 +272,7 @@ Request:
 ```
 
 Response:
+
 ```json
 {
   "presignedUrl": "https://...",
@@ -279,6 +287,7 @@ Response:
 **R2**: `DELETE /api/r2/delete`
 
 Request:
+
 ```json
 {
   "key": "file-key-to-delete"
@@ -296,6 +305,7 @@ Returns all tracked files with metadata.
 `GET /api/v1/files/stats`
 
 Returns storage statistics:
+
 ```json
 {
   "totalFiles": 42,
@@ -351,12 +361,25 @@ const fileData = extractFileDataFromUrl(imageUrl);
 // { name: "file.png", size: 1024, type: "image/png", key: "abc123", publicUrl: "...", provider: "cloudflare" }
 ```
 
-## Demo Pages
+## Example Pages Included
 
-After installation, you can view the demo pages:
+After installation, you get 2 ready-to-use example pages:
 
-- `/categories` - Category management with image uploads
-- `/files` - File storage tracking and statistics
+### `/categories` - Categories Page
+
+- List all categories with images in a responsive grid
+- Create new categories with image upload using the Dropzone
+- Edit existing categories
+- Delete categories (automatically removes files from storage)
+- Pagination support
+
+### `/file-storage` - File Storage Dashboard
+
+- Track all uploaded files across your application
+- View total storage space used (formatted in KB/MB/GB)
+- See provider breakdown (how much is stored in S3 vs R2)
+- View file details: name, size, type, provider, upload date
+- Delete files directly with confirmation modal
 
 ## Dependencies
 
